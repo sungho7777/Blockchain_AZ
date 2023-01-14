@@ -124,7 +124,7 @@ def mine_block():
     previous_proof = previous_block['proof']
     proof = blockchain.proof_of_work(previous_proof)
     previous_hash = blockchain.hash(previous_block)
-    blockchain.add_transaction(sender = node_address, receiver = 'You', amount = 1)
+    blockchain.add_transaction(sender = node_address, receiver = 'Juhwan', amount = 1)
     block = blockchain.create_block(proof, previous_hash)
 
     response = {'message':'Congratulation, you just mined a block',
@@ -154,7 +154,7 @@ def is_valid():
     return jsonify(response), 200
 
 # Adding a new transaction to Blockchain
-@app.route('/is_transaction', methods = ['POST'])
+@app.route('/add_transaction', methods = ['POST'])
 def add_transaction():
     json = request.get_json()
     transaction_keys = ['sender', 'receiver', 'amount']

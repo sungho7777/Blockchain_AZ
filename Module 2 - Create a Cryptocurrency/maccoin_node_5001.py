@@ -154,7 +154,7 @@ def is_valid():
     return jsonify(response), 200
 
 # Adding a new transaction to Blockchain
-@app.route('/is_transaction', methods = ['POST'])
+@app.route('/add_transaction', methods = ['POST'])
 def add_transaction():
     json = request.get_json()
     transaction_keys = ['sender', 'receiver', 'amount']
