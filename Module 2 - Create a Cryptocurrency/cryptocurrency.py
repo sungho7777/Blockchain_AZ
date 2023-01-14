@@ -167,6 +167,21 @@ def add_transaction():
     response = {'message': f'This transaction will added to Block {index}'}
     return jsonify(response), 201
 
+# Connection new nodes
+@app.route('/connect_node', methods = ['POST'])
+def connect_node():
+    json = request.get_json()
+    nodes = json.get('nodes')
+    if nodes is None:
+        return 'No node', 400
+    for node in nodes:
+        blockchain.add_node(node)
+    response = {
+        'message': 'All the nodes are now connected. The MacCoin Blockchain now contains the following nodes:',
+        'total_nodes': list(blockchain.nodes)
+    }
+    return jsonify(response), 201
+
 # -------------------------------------------------------
 #
 # Part 3 - Decentralizing our Blockchain (블록체인 탈중앙화)
