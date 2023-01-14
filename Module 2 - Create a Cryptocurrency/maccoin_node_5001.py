@@ -33,7 +33,7 @@ class Blockchain:
                  'timestamp': str(datetime.datetime.now()),
                  'proof': proof,
                  'previous_hash': previous_hash,
-                 'transactions': transactions}
+                 'transactions': self.transactions}
         self.transactions = []
         self.chain.append(block)
         return block
@@ -73,11 +73,9 @@ class Blockchain:
         return True
 
     def add_transaction(self, sender, receiver, amount):
-        self.transactions.append({
-            'sender': sender,
-            'receiver': receiver,
-            'amount': amount
-        })
+        self.transactions.append({'sender': sender,
+                                  'receiver': receiver,
+                                  'amount': amount})
         previous_block = self.get_previous_block()
         return previous_block['index'] + 1
 
@@ -199,68 +197,8 @@ def replace_chain():
                     'actual_chain': blockchain.chain}
     return jsonify(response), 200
 
-
-
-
-
-
-
-
 # Running the app
-app.run(host = '0.0.0.0', port = 5000)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+app.run(host = '0.0.0.0', port = 5001)
 
 
 
